@@ -1,3 +1,4 @@
+<html>
 <body>
   <div id=all>
 <h1>TODO List</h1>
@@ -5,12 +6,14 @@
 
 <div *ngFor="let todo of todos; index as i">
   <div *ngIf= todo.completed>
-    <p style="text-decoration:line-through">{{i}}. {{todo.task}} <button style="float:right" (click)="removeTodo(i)"> Remove Task</button></p>
+    <button class=cButton style="float:left" (click)="removeTodo(i)"> x</button><p style="text-decoration:line-through">{{i+1}}. {{todo.task}} <button class=cButton style="float:right"> =)</button></p>
   </div>
+
   <div *ngIf= !todo.completed>  
-    <p>{{i}}. {{todo.task}} <button style="float:right" (click)="completeTodo(i)"> Complete Task</button> </p>
+    <button class=cButton style="float:left" (click)="removeTodo(i)"> x</button><p>{{i+1}}. {{todo.task}} <button class=cButton style="float:right" (click)="completeTodo(i)"> Complete Task</button> </p>
   </div>
 </div>
+
 <div *ngIf="todos.length <= 0">
   <h1>Congradulations!</h1>
 </div>
@@ -21,6 +24,38 @@
   <input id="submit" type="submit" value="Add Task" />
 </form>
 <br/>
+
+<!--<div>
+<button class="Starwars" style="float:left" (click)="swapiCall()">Star Wars Api</button>
+<br/>
+</div>
+<br/> /-->
+<br/>
+<h1>Practice using APIs in Angular</h1>
+<br/>
+
+<form #searchForm="ngForm" (ngSubmit)="swapiCall(searchForm.form.value.id)">
+  <label>Search Swapi People by Id: </label>
+  <input type="number" name="id" ngModel/>
+  <input type="submit" value="Search"/>
+</form>
+
+<div *ngIf="person!==null">
+  <p>Name: {{person.name}}</p>
+  <p>Home World Link: {{person.homeworld}}</p>
+  <p>Height: {{person.height}}</p>
+  <p>Films: </p>
+    <ul>
+      <li *ngFor="let film of person.films">
+        {{film}}
+      </li>
+    </ul>
+</div>
+
+<br/>
+<!--<button (click)="testLogger()">Test Logger</button>
+<br/>   this was just a practice with services-->
 </div>
 </body>
+</html>
 
